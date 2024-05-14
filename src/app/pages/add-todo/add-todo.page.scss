@@ -1,0 +1,19 @@
+.text-danger {
+  color: rgba(244, 62, 62, 0.875);
+  // margin: 4px 0 0;
+  padding: 0 16px;
+}
+
+.btn {
+  width: calc(100% - 40px);
+  display: block;
+  margin: 15px auto 0;
+
+}
+
+.padding-top {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

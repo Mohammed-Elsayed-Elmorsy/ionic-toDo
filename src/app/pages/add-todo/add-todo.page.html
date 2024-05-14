@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button>
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>{{todo?'EDIT':'ADD'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <form action="" [formGroup]="form" (ngSubmit)="addToDo()">
+      <ion-row class="padding-top">
+        <ion-col size="12" sizeMd="6" sizeSm="12">
+          <ion-item>
+            <ion-input formControlName="title" type="text" fill="solid" label="Title"
+              labelPlacement="floating"></ion-input>
+          </ion-item>
+          <small class="text-danger " *ngIf="form.get('title')?.touched &&form.get('title')?.hasError('required')">
+            Required
+          </small>
+        </ion-col>
+        <ion-col size="12" sizeMd="6" sizeSm="12">
+          <ion-item>
+            <ion-input formControlName="description" type="text" fill="solid" label="Description"
+              labelPlacement="floating"></ion-input>
+          </ion-item>
+          <small class="text-danger "
+            *ngIf="form.get('description')?.touched &&form.get('description')?.hasError('required')">
+            Required
+          </small>
+        </ion-col>
+      </ion-row>
+      <ion-button class="btn" expand="block" [disabled]="form.invalid" type="submit">add</ion-button>
+    </form>
+  </div>
+</ion-content>

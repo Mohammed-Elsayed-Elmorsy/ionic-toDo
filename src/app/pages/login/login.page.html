@@ -1,0 +1,33 @@
+<ion-content [fullscreen]="true">
+  <h2 class="ion-padding">
+    <ion-text>
+      To Do App
+    </ion-text>
+  </h2>
+  <p class="ion-padding">
+    <ion-text>
+      Login To Continue
+    </ion-text>
+  </p>
+  <div>
+    <form action="" [formGroup]="form" (ngSubmit)="submit()">
+      <ion-item lines="">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input formControlName="username" placeholder="Enter UserName" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input formControlName="email" type="email" fill="solid" label="Email" labelPlacement="floating"
+          errorText="Invalid email" ngModel email></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input formControlName="password" placeholder="Enter Password" type="password" label="Passward"
+          label-placement="floating" fill="outline" placeholder="Enter Password"></ion-input>
+      </ion-item>
+      <div class="ion-padding">
+        <ion-button [disabled]="!form.valid" expand="block" type="submit">Login</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

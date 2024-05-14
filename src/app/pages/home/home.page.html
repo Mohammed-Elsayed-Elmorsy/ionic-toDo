@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- content -->
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- ion spinner -->
+  <ion-row *ngIf="loading" class="ion-justify-content-center ion-align-items-center height">
+    <ion-col size="auto">
+      <ion-spinner></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+  <!-- ion refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="card ion-padding" *ngIf="todos.length>0">
+    <ion-row class="row ion-align-items-center" *ngFor="let todo of todos;let i =index">
+      <ion-col size="2" sizeSm="2">
+        <ion-card-content class="item-index">
+          {{i + 1 }}
+        </ion-card-content>
+      </ion-col>
+      <ion-col size="7" sizeSm="7" routerLink="todo-detail/{{i}}">
+        <ion-card-header>
+          <ion-card-subtitle>{{todo.description}}</ion-card-subtitle>
+          <ion-card-title>{{todo.title}}</ion-card-title>
+        </ion-card-header>
+      </ion-col>
+      <ion-col size="3" sizeSm="3">
+        <ion-button size="small" color="danger" fill="outline" (click)="deleteTodo(i)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button size="small" fill="outline" (click)="editToDo(i)">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <!-- infinite scroll -->
+  <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content loadingText="Please Wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <!-- fab button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addToDo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
